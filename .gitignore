@@ -1,3 +1,5 @@
 client/Library/
 client/Temp/
 client/client.sln
+client/client.csproj
+client/client.Editor.csproj
