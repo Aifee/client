@@ -3,3 +3,5 @@ client/Temp/
 client/client.sln
 client/client.csproj
 client/client.Editor.csproj
+client/.vs/client/v15/.suo
+client/.vs/
