@@ -27,6 +27,12 @@ public class Ball : MonoBehaviour {
                 direction += bound;
                 direction += bound;
             }
+            if(pos.y < -36)
+            {
+                isMoving = false;
+                Debug.Log("Death!");
+            }
+
             pos += step;
             cache.position = pos;
         }
@@ -49,6 +55,11 @@ public class Ball : MonoBehaviour {
                     direction += bound;
                     direction += bound;
                 }
+            }
+            if(other.gameObject.tag == "Character")
+            {
+                direction += Vector3.up;
+                direction += Vector3.up;
             }
         }
     }

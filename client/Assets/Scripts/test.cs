@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class test : MonoBehaviour {
 
-    public Transform from;
-    public Transform to;
-    public Text text;
+    public Camera mainCamera;
+    public GameObject cube;
+    public Transform Root;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,35 +15,29 @@ public class test : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 lerp = to.position - from.position;
-        string dir = "zero";
-        /// left right 
-        if(Mathf.Abs(lerp.x) > Mathf.Abs(lerp.y))
+
+    }
+
+    [ContextMenu("Execute")]
+    public void Execute()
+    {
+        createMap();
+    }
+
+
+    private void createMap()
+    {
+        for(int i = 0; i < 30; i++)
         {
-            // right 
-            if(lerp.x > 0)
+            for(int j = 0; j < 45; j++)
             {
-                dir = "right";
-            }else
-            {
-                dir = "left";
+                GameObject go = GameObject.Instantiate(cube);
+                go.name = string.Format("Index_{0}_{1}", i, j);
+                go.transform.parent = Root;
+                
+                Vector3 pos = new Vector3((j - 22) * 1.25f, i * 1.25f,0);
+                go.transform.position = pos;
             }
         }
-        else
-        {
-            // up down
-            if(lerp.y > 0)
-            {
-                dir = "up";
-            }
-            else
-            {
-                dir = "down";
-            }
-        }
-        float angle = Mathf.Asin(Vector3.Distance(Vector3.zero, Vector3.Cross(from.position.normalized, to.position.normalized))) * Mathf.Rad2Deg;
-        text.text = string.Format("dir = {0}", dir);
-        //float dot = Vector3.Dot(from.position.normalized, to.position.normalized);
-        //text.text = string.Format("{0}", dot);
     }
 }
